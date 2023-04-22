@@ -1,2 +1,98 @@
 @import './common';
-@import './example';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #212121;
+    line-height: 1.5;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
+input {
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 30px;
+}
+
+button {
+    margin: 0 auto;
+    margin-top: 50px;
+    display: block;
+}
+
+button:disabled {
+    background-color: #c1c1c1;
+    cursor: not-allowed;
+}
+
+button.hidden {
+    display: none;
+}
+
+input,
+button {
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 30px;
+}
+
+input[type="submit"],
+button {
+    border: none;
+    background-color: rgba(45, 45, 233, 0.731);
+    color: white;
+    cursor: pointer;
+}
+
+.gallery {
+    display: grid;
+    max-width: 1140px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: 240px;
+    grid-gap: 12px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery__link {
+    display: block;
+    min-width: 320px;
+    text-decoration: none;
+    height: 100%;
+}
+
+.gallery__link:hover {
+    cursor: zoom-in;
+}
+
+.info {
+    display: flex;
+    align-items: baseline;
+}
+
+.gallery__image:hover {
+    transform: scale(1.03);
+}
+
+.gallery__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform var(--animation-duration) var(--timing-function);
+}
+
