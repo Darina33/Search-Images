@@ -44,9 +44,10 @@ button.hidden {
 
 input,
 button {
-    border-radius: 15px;
+    border-radius: 50px;
     padding: 8px 20px;
-    font-size: 25px;
+    font-size: 22px;
+    font-weight: 300;
 }
 
 input[type="submit"],
@@ -64,8 +65,10 @@ button {
 .search-form {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: linear-gradient(to bottom, #6d7f9a, #8490ba, #b7bad6, #e3e3f0, #ffffff);
 }
 
 .gallery {

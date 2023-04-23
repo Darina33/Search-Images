@@ -24,10 +24,14 @@ loadMoreBtn.button.addEventListener("click", fetchImage)
 
 function onSubmit(e) {
     e.preventDefault();
-    loadMoreBtn.show();
     const form = e.currentTarget;
     pixabay.query = form.elements.searchQuery.value;
 
+    if (pixabay.query === "") {
+        Notify.info("Please select")
+        return;
+    }
+    loadMoreBtn.show();
     clearNewsList();
     pixabay.resetPage();
     fetchImage().finally(() => form.reset())
@@ -55,7 +59,8 @@ async function getImagesMarkup() {
             throw new Error("Sorry, there are no images matching your search query. Please try again.");
             return hits.reduce((markup, hits) => markup + createMarkup(hits), "")
         } catch (err) {
-            onError(err);
+          onError(err);
+          Notify.info('Sorry, there are no images matching your search query. Please try again.');
         }
 }
     
