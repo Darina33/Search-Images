@@ -15,7 +15,7 @@ const loadMoreBtn = new LoadMoreBtn({
     selector: ".load-more",
     isHidden: true,
 })
-const gallery = new SimpleLightbox('.gallery a');
+let gallery;
 
 
 refs.form.addEventListener("submit", onSubmit);
@@ -41,6 +41,7 @@ async function fetchImage() {
         const markup = await getImagesMarkup();
         updateNewsList(markup);
         loadMoreBtn.enable();
+        gallery = new SimpleLightbox('.gallery a').refresh();
     } catch (err) {
         onerror(err)
     }
@@ -60,7 +61,7 @@ async function getImagesMarkup() {
     
 function createMarkup({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
     return `<div class="photo-card"><a href="${largeImageURL}" alt="${tags}" class="gallery__link">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy class="gallery__image" /></a>
+  <img src="${webformatURL}" alt="${tags}" loading="lazy"  class="gallery__image" /></a>
   <div class="info">
     <p class="info-item">
       <b>Likes ${likes}</b>

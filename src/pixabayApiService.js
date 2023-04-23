@@ -11,7 +11,7 @@ export default class pixabayApiService {
     }
     
     async getImage() {
-      const url = `${pixabayApiService.ENDPOINT}?key=${pixabayApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=4&page=${this.page}`;
+      const url = `${pixabayApiService.ENDPOINT}?key=${pixabayApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`;
 
       const { data } = await axios.get(url);
       this.incrementPage();
