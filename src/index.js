@@ -19,16 +19,16 @@ let gallery;
 
 
 refs.form.addEventListener("submit", onSubmit);
-loadMoreBtn.button.addEventListener("click", fetchImage)
+loadMoreBtn.button.addEventListener("click", fetchImage);
 
 
 function onSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
-    pixabay.query = form.elements.searchQuery.value;
+    pixabay.query = form.elements.searchQuery.value.trim();
 
     if (pixabay.query === "") {
-        Notify.info("Please select")
+        Notify.info("Field cannot be empty")
         return;
     }
     loadMoreBtn.show();
@@ -54,13 +54,15 @@ async function fetchImage() {
 async function getImagesMarkup() {
     try {
         const { hits } = await pixabay.getImage();
-        console.log(hits);
-        if (hits.length === 0)
-            throw new Error("Sorry, there are no images matching your search query. Please try again.");
+        const { totalHits } = await pixabay.getImage();
+        Notify.info(`Hooray! We found ${totalHits} images.`)
+        if (hits.length === 0) {
+            Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+            throw new Error;
+        } 
             return hits.reduce((markup, hits) => markup + createMarkup(hits), "")
         } catch (err) {
           onError(err);
-          Notify.info('Sorry, there are no images matching your search query. Please try again.');
         }
 }
     
@@ -87,6 +89,15 @@ function createMarkup({ webformatURL, largeImageURL, tags, likes, views, comment
 function updateNewsList(markup) {
     if (markup !== undefined)
         refs.gallery.insertAdjacentHTML("beforeend", markup)
+    
+      const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
 function clearNewsList() {
@@ -98,3 +109,4 @@ function onError(err) {
     loadMoreBtn.hide();
     clearNewsList();
 }
+

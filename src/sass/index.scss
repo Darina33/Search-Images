@@ -80,6 +80,7 @@ button {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
 }
 
 .gallery__link {
@@ -117,4 +118,3 @@ button {
     transition: transform var(--animation-duration) var(--timing-function);
     border-radius: 8px;
 }
-
