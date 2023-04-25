@@ -95,13 +95,18 @@ button {
 }
 
 .info {
+    background-image: radial-gradient(circle, #d1ddef, #d8dfef, #e1e4f1, #ededf8, #ffffff);
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    gap: 10px;
     padding: 0 10px;
 }
 
 .info-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;    
     margin: 6px;
     font-size: 14px;
     font-weight: 300;
