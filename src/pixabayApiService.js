@@ -8,10 +8,11 @@ export default class pixabayApiService {
     constructor() {
     this.query = "";
     this.page = 1;
+    this.per_page = 40;
     }
     
     async getImage() {
-      const url = `${pixabayApiService.ENDPOINT}?key=${pixabayApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`;
+      const url = `${pixabayApiService.ENDPOINT}?key=${pixabayApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.per_page}&page=${this.page}`;
 
       const { data } = await axios.get(url);
       this.incrementPage();

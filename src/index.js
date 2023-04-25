@@ -53,14 +53,20 @@ async function fetchImage() {
 
 async function getImagesMarkup() {
     try {
-        const { hits } = await pixabay.getImage();
-        const { totalHits } = await pixabay.getImage();
-        Notify.info(`Hooray! We found ${totalHits} images.`)
+        const { hits, totalHits } = await pixabay.getImage();
+        const limitPage = Math.ceil(totalHits / pixabay.per_page);
+        
         if (hits.length === 0) {
             Notify.failure('Sorry, there are no images matching your search query. Please try again.');
             throw new Error;
+        } else if (pixabay.page > limitPage) {
+            loadMoreBtn.hide();
+            Notify.failure(
+            "We're sorry, but you've reached the end of search results.");
         } 
-            return hits.reduce((markup, hits) => markup + createMarkup(hits), "")
+        Notify.info(`Hooray! We found ${totalHits} images.`)
+            return hits.reduce((markup, hits) => markup + createMarkup(hits), "");
+            
         } catch (err) {
           onError(err);
         }
@@ -110,3 +116,19 @@ function onError(err) {
     clearNewsList();
 }
 
+window.onscroll = function () { scrollFunction() };
+const btn = document.getElementById("myBtn");
+
+btn.addEventListener("click", topFunction)
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
