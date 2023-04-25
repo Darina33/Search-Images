@@ -68,13 +68,14 @@ button {
     margin-bottom: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-image: linear-gradient(to bottom, #6d7f9a, #8490ba, #b7bad6, #e3e3f0, #ffffff);
+    background-image: linear-gradient(to bottom, #cad3df, #d9dded, #d6d8ea, #eaeaf0, #ffffff);
 }
 
 .gallery {
     display: grid;
     max-width: 1140px;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 358px));
     grid-auto-rows: 240px;
     grid-gap: 60px 12px;
     justify-content: center;
